@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <style>
+        @font-face {
+            font-family: siyuan;
+            src: url(fonts/SourceHanSerifCN-Regular.otf);
+        }
+        body
+        {
+            font-family: siyuan,sans-serif;
+            background-color: rgba(255, 232, 198, 1);
+            min-height: calc( 100vh - 8px );
+        }
+        .banner
+        {
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: calc( 100vw/5776*3208 );
+            background: url(img/banner.png) no-repeat center center;
+            background-size: cover;
+            position: absolute;
+        }
+        .banner-text
+        {
+            margin-left: 50px;
+            margin-top: calc( 100vw/5776*3208/2 - 40px - 20px );
+            font-size: 50px;
+        }
+        .banner-red
+        {
+            font-size: 40px;
+            padding-left: 5px;
+            padding-right: 5px;
+            margin-top: 10px;
+            margin-left: 50px;
+            color: #fff;
+            width: fit-content;
+            background-color: rgba(255, 105, 70, 1);
+        }
+        .main-part
+        {
+            max-width: 1200px;
+            margin-right: auto;
+            margin-left: auto;
+            margin-top:  calc( 100vw/5776*3208 + 10px );
+            width: 100%;
+            min-height: 100vh;
+        }
+        .main-title
+        {
+            z-index: 10;
+            font-size: 45px;
+            text-align: center;
+            margin: auto;
+            color: #fff;
+            width: fit-content;
+            padding-left: 20px;
+            padding-right: 20px;
+            background-color: rgba(255, 105, 70, 1);
+        }
+        .text-box
+        {
+            font-size: 3rem;
+            position: relative;
+            z-index: -10;
+            left: 0;
+            right: 0;
+            padding-top: 25px;
+            padding-right: 0px;
+            padding-left: 0px;
+            margin-top: -20px;
+            margin-left: inherit;
+            margin-right: inherit;
+            height: 300px;
+            width: calc( 100% - 40px );
+            max-width: inherit;
+            border: 5px solid #FF6946;
+            color: #fff;
+        }
+        .text-box-inner
+        {
+            font-size: 2rem;
+            position: absolute;
+            z-index: -5;
+            left: 0;
+            right: 0;
+            padding-top: 30px;
+            padding-right: 10px;
+            padding-left: 10px;
+            margin-top: -20px;
+            margin-left: 5px;
+            height: 300px;
+            width: calc( 100% - 10px );
+            max-width: inherit;
+            background-color: #6179E8;
+            color: #fff;
+        }
+        .image-outer
+        {
+            padding-top: 70px;
+            max-width: 1200px;
+            min-height: 200px;
+        }
+        .image-box
+        {
+            width: calc( 100% - 40px );
+            max-width: inherit;
+            display: inline-block;
+            width: calc( 100% / 3 - 3px );
+            height: 150px;
+        }
+        .image-inner
+        {
+            position: relative;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            height: 200px;
+            width: 200px;
+            border-radius: 100px;
+        }
+        .image-inner-above {
+            position: relative;
+            left: 0;
+            right: 0;
+            margin-right: auto;
+            height: 80px;
+            width: 80px;
+            border-radius: 100px;
+            z-index: 0;
+        }
+        .image-inner-container
+        {
+            height: 200px;
+            width: 200px;
+            border-radius: 100px;
+            z-index: 10;
+            position: absolute;
+        }
+        .achi-outer
+        {
+            padding-left: 40px;
+            padding-right: 40px;
+            padding-top: 40px;
+            max-width: 1200px;
+            min-height: 200px;
+        }
+        .achi-inner
+        {
+            position: relative;
+            left: 0;
+            right: 0;
+            height: 150px;
+            width: 600px;
+            border-top-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+        }
+        .achi-inner-above {
+            font-size: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            height: 40px;
+            width: 150px;
+            border-top-left-radius: 25px;
+            border-bottom-right-radius: 25px;
+            z-index: 10;
+        }
+        .achi-inner-above span
+        {
+            color: #fff;
+        }
+        .achi-inner-container
+        {
+            padding-top: 60px;
+            padding-bottom: 20px;
+            background: #fff;
+            width: 600px;
+            border-top-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            z-index: 0;
+            position: absolute;
+        }
+        .achi-inner-container span
+        {
+            font-size: 1.2rem;
+            margin-left: 50px;
+        }
+        .history, .achi
+        {
+            margin-top: 70px;
+            padding-left: 10px;
+        }
+        .history-title, .achi-title
+        {
+            color: #FF6946;
+            -webkit-text-stroke: 1px #000;
+            font-size: 3rem;
+        }
+        .history-title-before
+        {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            background: url(img/partylogo.png);
+            background-size: cover;
+        }
+        .achi-title-before
+        {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            background: url(img/red-flag.png);
+            background-size: cover;
+        }
+        .red-text-box-inner li
+        {
+            font-size: 1.5rem;
+            border-left: 8px solid #FF6946;
+            background: #FF69461A;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 40px;
+            max-width: 600px;
+            padding: 0.5rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+        .rem
+        {
+            padding-left: 40px;
+            padding-right: 40px;
+            font-size: 2rem;
+        }
+        .rem p {
+            font-size: 1.5rem;
+        }
+        .rem-title
+        {
+            width: 100px;
+            position: relative;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .rem-box
+        {
+            margin-top: 10px;
+            border: 1px solid #FF6946;
+            background-color: #ffffff1a;
+            max-width: inherit;
+            display: inline-block;
+            width: calc( 100% / 2 - 7px );
+            height: auto;
+        }
+        .rem-box-full
+        {
+            margin-top: 10px;
+            border: 1px solid #FF6946;
+            background-color: #ffffff1a;
+            max-width: inherit;
+            display: inline-block;
+            width: 100%;
+            height: auto;
+        }
+        .rem-main
+        {
+            width: 200px;
+            position: relative;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+        .rem-main-full
+        {
+            width: 98%;
+            position: relative;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+        .rem-up
+        {
+            text-align: center;
+            background-color: #FF6946;
+            color: #fff;
+            height: 3rem;
+        }
+        .footer
+        {
+            font-size: 25px;
+            margin-top: 40px;
+            left: 0;
+            background: #6178E8;
+            color: #fff;
+            width: 100%;
+            background-size: cover;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <div class="banner-text">
+            <span>热烈庆祝中国共产党</span>
+            <br>
+            <span>成立100周年</span>
+        </div>
+        <div class="banner-red">
+            <span>1921-2021</span>
+        </div>
+    </div>
+    <div class="main-part">
+        <div class="main-title">
+            我们的光辉历程
+        </div>
+        <div class="text-box">
+            <span class="text-box-inner">
+                经过全党全国各族人民持续奋斗，
+                我们实现了第一个百年奋斗目标，在中华大地上全面建成了小康社会，历史性地解决了绝对贫困问题，
+                正在意气风发向着全面建成社会主义现代化强国的第二个百年奋斗目标迈进。
+                这是中华民族的伟大光荣！这是中国人民的伟大光荣！这是中国共产党的伟大光荣！
+            </span>
+        </div>
+        <div class="image-outer">
+            <div class="image-box">
+                <div class="image-inner" style="border: 2px solid #28DBD8;">
+                    <div class="image-inner-container" style="background: url(img/1.webp);background-size: cover;"></div>
+                    <div class="image-inner-above" style="background-color: #28DBD8;"></div>
+                </div>
+            </div>
+            <div class="image-box">
+                <div class="image-inner" style="border: 2px solid #FF6946;">
+                    <div class="image-inner-container" style="background: url(img/2.webp);background-size: cover;"></div>
+                    <div class="image-inner-above" style="background-color: #FF6946;"></div>
+                </div>
+            </div>
+            <div class="image-box">
+                <div class="image-inner" style="border: 2px solid #6178E8;">
+                    <div class="image-inner-container" style="background: url(img/3.webp);background-size: cover;"></div>
+                    <div class="image-inner-above" style="background-color: #6178E8;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="history">
+            <div class="history-title-before"></div>
+            <span class="history-title">党的历史</span>
+            <div class="red-text-box">
+                <ul class="red-text-box-inner">
+                    <li>
+                        1921年党的一大：中国共产党诞生
+                    </li>
+                    <li>
+                        1922年党的二大：提出反帝反封建的民主革命纲领
+                    </li>
+                    <li>
+                        1923年党的三大：大革命洪流中召开的党的代表大会
+                    </li>
+                    <li>
+                        1925年党的四大：大革命洪流中召开的党的代表大会
+                    </li>
+                    <li>
+                        1927年党的五大：大革命洪流中召开的党的代表大会
+                    </li>
+                    <li>
+                        1928年党的六大：唯一在国外召开的党的代表大会
+                    </li>
+                    <li>
+                        1945年党的七大：确立毛泽东思想在全党的指导地位
+                    </li>
+                    <li>
+                        1956年党的八大：探索建设社会主义道路的良好开端
+                    </li>
+                    <li>
+                        1982党的十二大：开创社会主义现代化建设新局面
+                    </li>
+                    <li>
+                        1992年党的十四大：确立邓小平建设有中国特色社会主义理论在全党的指导地位；明确经济体制改革的目标是建立社会主义市场经济体制
+                    </li>
+                    <li>
+                        1997年党的十五大：高举邓小平理论伟大旗帜
+                    </li>
+                    <li>
+                        2007年党的十七大：科学发展，共建和谐的大会
+                    </li>
+                    <li>
+                        2012年党的十八大：全面建成小康社会
+                    </li>
+                    <li>
+                        2017年党的十九大：是在全面建成小康社会决胜阶段、中国特色社会主义进入新时代的关键时期召开的一次十分重要的大会
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+        <div class="achi">
+            <div class="achi-title-before"></div>
+            <span class="achi-title">伟大成就</span>
+            <div class="achi-outer">
+                <div class="achi-inner">
+                    <div class="achi-inner-container">
+                        <span>
+                            在新民主主义革命时期完成救国大业
+                        </span>
+                    </div>
+                    <div class="achi-inner-above" style="background-color: #FF6946;">
+                        <span>
+                            开天辟地
+                        </span>
+                    </div>
+                </div>
+                <div class="achi-inner">
+                    <div class="achi-inner-container">
+                        <span>
+                            在社会主义革命和建设时期完成兴国大业
+                        </span>
+                    </div>
+                    <div class="achi-inner-above" style="background-color: #6178E8;">
+                        <span>
+                            改天换地
+                        </span>
+                    </div>
+                </div>
+                <div class="achi-inner">
+                    <div class="achi-inner-container">
+                        <span>
+                            在改革开放和现代化建设新时期推进富国大业
+                        </span>
+                    </div>
+                    <div class="achi-inner-above" style="background-color: #FEBC00;">
+                        <span>
+                            翻天覆地
+                        </span>
+                    </div>
+                </div>
+                <div class="achi-inner">
+                    <div class="achi-inner-container">
+                        <span>
+                            在中国特色社会主义新时代推进并将在本世纪中叶实现强国大业
+                        </span>
+                    </div>
+                    <div class="achi-inner-above" style="background-color: #28DBD8;">
+                        <span>
+                            惊天动地
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rem">
+            <p>
+                盛世如画,山海河鸣
+            </p>
+            <p>
+                这些<span style="color: #FF6946">数字</span>，
+                <br>
+                值得我们铭记......
+            </p>
+            <div class="rem-title">
+                <span style="color: #fe6440;font-size: 5rem;position: absolute;left: -3px;">8</span>
+                <span style="color: #000;font-size: 5rem;">8</span>
+                <span style="font-size: 1rem;">年多来</span>
+            </div>
+            <div class="rem-box">
+                <div class="rem-up"><span>奔赴战场的扶贫干部</span></div>
+                <div class="rem-main">
+                    <span style="color: #fe6440;font-size: 3rem;position: absolute;left: 19px;">300w + </span>
+                    <span style="color: #000;font-size: 3rem;">300w + </span>
+                </div>
+            </div>
+            <div class="rem-box">
+                <div class="rem-up"><span>倒在路上的扶贫干部</span></div>
+                <div class="rem-main">
+                    <span style="color: #fe6440;font-size: 3rem;position: absolute;left: 26px;">1800 + </span>
+                    <span style="color: #000;font-size: 3rem;">1800 + </span>
+                </div>
+            </div>
+            <div class="rem-box-full">
+                <div class="rem-up">
+                    <span>
+                        参与扶贫的人员
+                    </span>
+                </div>
+                <div class="rem-main-full">
+                   <p>大学教授、县委书记、县长、乡镇干部、驻村第一书记、大学生村官、乡村医生、退伍老兵……</p>
+                </div>
+            </div>
+            <div class="rem-box-full">
+                <div class="rem-up">
+                    <span>
+                        中国脱贫速度
+                    </span>
+                </div>
+                <div class="rem-main-full">
+                    <span style="color: #fe6440;font-size: 3rem;position: absolute;left: calc( 50% - 94px );">1000w + </span>
+                    <span style="color: #000;font-size: 3rem;">1000w + </span>
+                   <p>平均每年</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div style="background: #FF6946;position:absolute; z-index: 0;width: 30px;height: 30px;margin-top: -15px;margin-left: 60px;">
+        </div>
+        <div style="padding: 40px; z-index: 10;">
+            <span>
+                中国共产党一经诞生，就把为中国人民谋幸福、为中华民族谋复兴确立为自己的初心使命。
+                <br>
+                一百年来，中国共产党团结带领中国人民进行的一切奋斗、一切牺牲、一切创造，归结起来就是一个主题：实现中华民族伟大复兴。
+            </span>
+        </div>
+    </div>
+</body>
